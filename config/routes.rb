@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :post, :destroy]
     resources :posts, only: [:index, :destroy]
     resources :abouts, only: [:index, :edit, :update]
+    root to:'posts#index'
   end
 
   namespace :end_user do
