@@ -18,9 +18,10 @@ Rails.application.routes.draw do
 
   namespace :end_user do
     resources :users, only: [:show, :edit, :updatte, :destroy, :following, :followed, :post, :nice, :check]
-    resources :posts, only: [:index, :new, :create]
-    resources :comment, only: [:create]
-    resources :nice, only: [:create, :destroy]
+    resources :posts, only: [:index, :new, :create] do
+      resource :nices, only: [:create, :destroy]
+    end
+    resources :comments, only: [:create]
     get 'about' => 'abouts#index'
   end
 end

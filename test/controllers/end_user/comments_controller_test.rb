@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EndUser::NiceControllerTest < ActionDispatch::IntegrationTest
+class EndUser::CommentsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

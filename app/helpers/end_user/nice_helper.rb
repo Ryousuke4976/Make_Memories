@@ -1,2 +1,0 @@
-module EndUser::NiceHelper
-end

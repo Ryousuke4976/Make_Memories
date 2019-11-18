@@ -1,0 +1,15 @@
+<h1>投稿</h1>
+  <div>
+    <%= form_for @post, url: end_user_posts_path do |f| %>
+      <% if @post.errors.any? %>
+        <%= @post.errors.conut %>件のエラーが発生しました。
+        <% @post.errors.full_message.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+
+      <%= f.attachment_field :image, class: "post" %>
+      <%= f.text_area :content, size: "40x10", maxlength: 400, class: "post" %>
+      <%= f.submit "投稿" %>
+    <% end %>
+  </div>
