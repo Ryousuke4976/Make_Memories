@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_045841) do
+ActiveRecord::Schema.define(version: 2019_11_19_111357) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "content"
@@ -58,13 +58,12 @@ ActiveRecord::Schema.define(version: 2019_11_14_045841) do
   end
 
   create_table "relations", force: :cascade do |t|
-    t.integer "user_id_id"
-    t.integer "follow_id_id"
+    t.integer "user_id"
+    t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["follow_id_id"], name: "index_relations_on_follow_id_id"
-    t.index ["user_id_id"], name: "index_relations_on_user_id_id"
-    t.index [nil, nil], name: "index_relations_on_user_id_and_follow_id", unique: true
+    t.index ["follow_id"], name: "index_relations_on_follow_id"
+    t.index ["user_id"], name: "index_relations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

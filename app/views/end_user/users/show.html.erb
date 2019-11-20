@@ -1,0 +1,26 @@
+<h1>ユーザ詳細</h1>
+  <div>
+    <%= @user.name %>
+    <%= attachment_image_tag @user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
+    <%= @user.introduction %>
+    <% if @user.id == current_user.id %>
+      <%= @user.email %>
+      <%= link_to 'ユーザ編集', edit_end_user_user_path(@user) %>
+      <%= link_to '退会', end_user_check_path(@user) %>
+    <% end %>
+    <%= render 'end_user/relations/follow_button', user: @user %>
+  </div>
+  <ul>
+    <li>
+      <%= link_to '投稿', end_user_post_path(@user) %>
+    </li>
+    <li>
+      <%= link_to 'いいね', end_user_nice_path(@user) %>
+    </li>
+    <li>
+      <%= link_to 'フォロー一覧', end_user_following_path(@user) %>
+    </li>
+    <li>
+      <%= link_to 'フォロワー一覧', end_user_followed_path(@user) %>
+    </li>
+  </ul>

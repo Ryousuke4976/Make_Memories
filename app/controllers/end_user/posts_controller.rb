@@ -3,6 +3,7 @@ class EndUser::PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).reverse_order
     @comment = Comment.new
+    @user = current_user
   end
 
   def new

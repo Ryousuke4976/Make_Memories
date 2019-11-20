@@ -17,10 +17,16 @@ Rails.application.routes.draw do
   end
 
   namespace :end_user do
-    resources :users, only: [:show, :edit, :updatte, :destroy, :following, :followed, :post, :nice, :check]
+    resources :users, only: [:check, :show, :edit, :updatte, :destroy]
+    get 'users/:id/following', to: 'users#following', as: 'following'
+    get 'users/:id/followed', to: 'users#followed', as: 'followed'
+    get 'users/:id/nice', to: 'users#nice', as: 'nice'
+    get 'users/:id/check', to: 'users#check', as: 'check'
+    get 'users/:id/post', to: 'users#post', as: 'post'
     resources :posts, only: [:index, :new, :create] do
       resource :nices, only: [:create, :destroy]
     end
+    resources :relations, only: [:create, :destroy]
     resources :comments, only: [:create]
     get 'about' => 'abouts#index'
   end

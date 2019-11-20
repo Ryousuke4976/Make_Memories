@@ -1,0 +1,9 @@
+<div>
+  <h1>ユーザ詳細</h1>
+  <%= link_to end_user_user_path(current_user) do %>
+    <%= user.name %>
+    <%= attachment_image_tag user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
+    <%= user.introduction %>
+    <%= user.email %>
+  <% end %>
+</div>
