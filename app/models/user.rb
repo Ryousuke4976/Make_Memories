@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def follow(other_user)
     unless self == other_user
-      Relation.find_or_create_by(user_id: other_user.id, follow_id: self.id)
+      Relation.find_or_create_by(user_id: self.id, follow_id: other_user.id)
     end
   end
 
@@ -25,6 +25,6 @@ class User < ApplicationRecord
   end
 
   def following?(other_user)
-    self.followers.include?(other_user)
+    self.followings.include?(other_user)
   end
 end
