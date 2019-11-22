@@ -1,11 +1,11 @@
 <% unless current_user == user %>
   <% if current_user.following?(user) %>
-    <%= form_for([:end_user, current_user.relations.find_by(follow_id: current_user.id)], html: { method: :delete}) do |f| %>
+    <%= form_with url: end_user_relation_path, method: :delete do |f| %>
       <%= f.hidden_field :user_id, value: user.id %>
       <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
     <% end %>
   <% else %>
-    <%= form_for([:end_user, current_user.relations.build]) do |f| %>
+    <%= form_with url: end_user_relation_path do |f| %>
       <%= f.hidden_field :user_id, value: user.id %>
       <%= f.submit 'Follow', class: 'btn bnt-primary btn-block' %>
     <% end %>

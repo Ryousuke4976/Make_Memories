@@ -1,0 +1,15 @@
+<%= render 'end_user/users/showtemplate', user: @user %>
+<% if @followers.any? %>
+  <% @followers.each do |follower| %>
+    <div>
+      <%= link_to end_user_user_path(follower.id) do %>
+        <%= attachment_image_tag follower, :profile_image, size: "70x70", format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= follower.name %>
+      <% end %>
+      <%= render 'end_user/relations/follow_button', user: follower %>
+      <%= follower.introduction %>
+    </div>
+  <% end %>
+<% else %>
+  <p>フォロワーがいませんでした。</p>
+<% end %>

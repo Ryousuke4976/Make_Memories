@@ -1,49 +1,11 @@
-<div>
-  <% if flash[:notice] %>
-    <%= flash[:notice] %>
-  <% end %>
-  <%= @user.name %>
-  <%= attachment_image_tag @user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
-  <%= @user.introduction %>
-  <% if @user.id == current_user.id %>
-    <%= @user.email %>
-    <%= link_to 'ユーザ編集', edit_end_user_user_path(@user) %>
-    <%= link_to 'アカウント削除', end_user_check_path(@user) %>
-  <% end %>
-  <%= render 'end_user/relations/follow_button', user: @user %>
-</div>
-<ul>
-  <li>
-    <%= link_to end_user_user_path(@user) do %>
-        投稿 <%= @user.posts.count %>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to end_user_nice_path(@user) do %>
-      いいね <%= @user.nices.count %>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to end_user_following_path(@user) do %>
-      フォロー一覧 <%= @user.followings.count %>
-    <% end %>
-  </li>
-  <li>
-    <%= link_to end_user_followed_path(@user) do %>
-      フォロワー一覧 <%= @user.followers.count %>
-    <% end %>
-  </li>
-</ul>
-<div>
-<% if @posts == nil %>
-  <p>該当する投稿がありませんでした。</p>
-<% else %>
-  <% @posts.each do |post| %>
+<%= render 'end_user/users/showtemplate', user: @user %>
+<% unless @niced_posts == nil %>
+  <% @niced_posts.each do |post| %>
     <div>
       <div>
         <%= link_to end_user_user_path(post.user) do %>
-        <%= attachment_image_tag post.user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
-        <%= post.user.name %>
+          <%= attachment_image_tag post.user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
+          <%= post.user.name %>
         <% end %>
         <%= post.created_at %>
       </div>
@@ -82,6 +44,7 @@
       <% end %>
     </div>
   <% end %>
-  <%= paginate @posts, class: "paginate" %>
+  <%= paginate @niced_posts, class: "paginate" %>
+<% else %>
+  <p>該当する投稿がありませんでした。</p>
 <% end %>
-</div>

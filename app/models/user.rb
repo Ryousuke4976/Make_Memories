@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relations, source: :user
   has_many :posts, dependent: :destroy
   has_many :nices, dependent: :destroy
+  has_many :niced_posts, through: :nices, source: :post, foreign_key: 'post_id'
   acts_as_paranoid
   attachment :profile_image
 
