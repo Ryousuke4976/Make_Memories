@@ -1,0 +1,16 @@
+<h1>ユーザ変更</h1>
+<%= form_for @user, url: end_user_user_path do |f| %>
+  <% if @user.errors.any? %>
+    <h2><%= @user.errors.count %> 件の error がありました。</h2>
+    <% @user.erros.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+  <label>名前</label>
+    <%= f.text_field :name, autofocus: true, required: true, placeholder: "名前" %>
+  <label>プロフィール画像</label>
+    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+  <label>紹介文</label>
+    <%= f.text_field :introduction, placeholder: "自己紹介" %>
+  <%= f.submit '変更' %>
+<% end %>
