@@ -1,0 +1,9 @@
+<h1>概要</h1>
+  <% if @abouts == nil %>
+    <p>概要はまだありません</p>
+  <% else %>
+    <%= @abouts.each do |about| %>
+      <%= about.created_at.strftime('%y/%m/%d') %>
+      <%= about.content %>
+    <% end %>
+  <% end %>
