@@ -8,4 +8,10 @@ class Post < ApplicationRecord
   def niced_by?(user)
     nices.where(user_id: user.id).exists?
   end
+
+  def self.search(search)
+    if search
+      post = Post.joins(:comments).where("(posts.content like ?) or (comments.comment like ?)", "%#{search}%","%#{search}%")
+    end
+  end
 end

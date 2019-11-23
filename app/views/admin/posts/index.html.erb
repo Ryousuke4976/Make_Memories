@@ -1,19 +1,35 @@
 <h1>投稿一覧</h1>
-  <% @posts.each do |post| %>
-    <div>
-      <%= attachment_image_tag post, :image %>
-      <%= attachment_image_tag post.user, :profile_image %>
-      <%= post.user.name %>
-      <%= post.created_at %>
-      <%= post.content %>
-      <%= attachment_image_tag post, :image %>
-      <%= post.comments.count %>
-      <%= post.nices.count %>
-      <% Comment.with_deleted.where(post_id: post).each do |comment| %>
-        <%= comment.user.image %>
-        <%= comment.user.name %>
-        <%= comment.created_at %>
-        <%= comment.comment %>
-      <% end %>
-    </div>
+<div>
+  <% if flash[:success] %>
+    <%= flash[:success] %>
   <% end %>
+    <% @posts.each do |post| %>
+      <div>
+        <div>
+          <% user = User.with_deleted.find_by(id: post.user_id) %>
+          <%= attachment_image_tag user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
+          <%= user.name %>
+          <%= post.created_at %>
+          <%= post.content %>
+          <% if post.image_id %>
+            <%= attachment_image_tag post, :image, :fill, 300, 300 %>
+          <% end %>
+          <% if post.deleted_at.nil? %>
+            <%= link_to "投稿削除", admin_post_path(post), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger btn-lg" %>
+          <% else %>
+            <p>削除済み</p>
+          <% end %>
+        </div>
+        <div>
+          <%= post.comments.with_deleted.count %>
+          <%= post.nices.with_deleted.count %>
+        </div>
+          <% Comment.with_deleted.where(post_id: post).each do |comment| %>
+              <%= attachment_image_tag comment.user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
+              <%= comment.user.name %>
+              <%= comment.comment %>
+          <% end %>
+      </div>
+    <% end %>
+    <%= paginate @posts, class: "paginate" %>
+</div>
