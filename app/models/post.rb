@@ -11,7 +11,9 @@ class Post < ApplicationRecord
 
   def self.search(search)
     if search
-      post = Post.joins(:comments).where("(posts.content like ?) or (comments.comment like ?)", "%#{search}%","%#{search}%")
+      post = Post.joins(:comments).with_deleted.where("(posts.content like ?) or (comments.comment like ?)", "%#{search}%","%#{search}%")
+    else
+      post = Post.with_deleted.all
     end
   end
 end

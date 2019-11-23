@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relations, source: :user
   has_many :posts, dependent: :destroy
   has_many :nices, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :niced_posts, through: :nices, source: :post, foreign_key: 'post_id'
   acts_as_paranoid
   attachment :profile_image
@@ -27,5 +28,11 @@ class User < ApplicationRecord
 
   def following?(other_user)
     self.followings.include?(other_user)
+  end
+
+  def self.search(search)
+    if search
+      user = User.with_deleted.where("(users.name like ?)", "%#{search}%")
+    end
   end
 end

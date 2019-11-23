@@ -1,12 +1,7 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    binding.pry
-    if params[:search] != nil
-      @posts = Post.search(params[:search]).page(params[:page]).reverse_order
-    else
-      @posts = Post.with_deleted.page(params[:page]).reverse_order
-    end
+    @posts = Post.search(params[:search]).page(params[:page]).reverse_order
   end
 
   def destroy

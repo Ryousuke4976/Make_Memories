@@ -7,8 +7,10 @@
       <div>
         <div>
           <% user = User.with_deleted.find_by(id: post.user_id) %>
-          <%= attachment_image_tag user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
-          <%= user.name %>
+          <%= link_to admin_user_path(user) do %>
+            <%= attachment_image_tag user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
+            <%= user.name %>
+          <% end %>
           <%= post.created_at %>
           <%= post.content %>
           <% if post.image_id %>

@@ -1,0 +1,24 @@
+<h1>ユーザ一覧</h1>
+<div>
+  <% if flash[:success] %>
+    <%= flash[:success] %>
+  <% end %>
+  <% if @users.nil? %>
+    <% @users.each do |user| %>
+      <div>
+      <%= link_to admin_user_path(user) do %>
+        <%= attachment_image_tag user, :profile_image,  size: "60x60", format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= user.name %>
+      <% end %>
+      <% if user.deleted_at.nil? %>
+        <%= link_to "ユーザ削除", admin_user_path(user), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger btn-lg" %>
+      <% else %>
+        <p>削除済み</p>
+      <% end %>
+      </div>
+    <% end %>
+    <%= paginate @users, class: "paginate" %>
+  <% else %>
+    <p>該当するユーザはいませんでした。</p>
+    <%= link_to 'ユーザ一覧へ', admin_users_path %>
+  <% end %>
