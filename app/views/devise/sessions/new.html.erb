@@ -1,19 +1,23 @@
-<h2></h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+<h2 style="text-align:center">ログイン</h2>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
 <% end %>
+<div style="width:100%;">
+  <div style="width:600px;margin:0 auto;text-align:center;">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field" style="margin-top:15px;">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <div class="field" style="margin-top:15px;">
+        <%= f.label :パスワード %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <div style="text-align:center;margin-top: 20px;">
+        <%= f.submit "ログイン", class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
