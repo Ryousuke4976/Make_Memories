@@ -2,8 +2,13 @@
   <% if flash[:success] %>
     <% flash[:success] %>
   <% end %>
-  <% @abouts.each do |about| %>
-    <%= about.created_at.strftime('%y/%m/%d') %>
-    <%= about.content %>
-  <% end %>
-  <%= paginate @abouts, class: "paginate" %>
+<div class="container">
+  <div class="row col-sm-8 col-sm-offset-2 content">
+    <% @abouts.each do |about| %>
+      <p>
+        <%= about.created_at.strftime("%Y/%m/%d") %> : <%= about.content %>
+      </p>
+    <% end %>
+    <%= paginate @abouts, class: "paginate" %>
+  </div>
+</div>

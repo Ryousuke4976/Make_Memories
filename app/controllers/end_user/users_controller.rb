@@ -45,6 +45,11 @@ class EndUser::UsersController < ApplicationController
   def check
   end
 
+  def search
+    @user = current_user
+    @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+  end
+
   private
 
   def user_params

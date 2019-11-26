@@ -1,11 +1,11 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
   def index
-    if params[:search] != nil
-      @users = User.search(params[:search]).page(params[:page]).reverse_order
-    else
-      @users = User.with_deleted.page(params[:page]).reverse_order
-    end
+    @users = User.with_deleted.page(params[:page]).reverse_order
+  end
+
+  def search
+    @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
   end
 
   def show

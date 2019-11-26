@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      user = User.with_deleted.where("(users.name like ?)", "%#{search}%")
+      user = User.where("(users.name like ?)", "%#{search}%")
     end
   end
 end

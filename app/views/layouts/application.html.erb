@@ -13,35 +13,53 @@
     <% if admin_signed_in? %>
       <div class="container">
         <h1>MakeMemories</h1>
-        <div class="row underbar header">
-          <%= link_to 'ログアウト', destroy_admin_session_path,method: :delete, class: "col-sm-1 header" %>
-          <%= link_to 'ユーザ一覧', admin_users_path, class: "col-sm-1 header" %>
-          <%= link_to '投稿一覧', admin_posts_path, class: "col-sm-1 header" %>
-          <%= link_to '概要', admin_abouts_path, class: "col-sm-1 header" %>
-          <%= link_to '概要追加', new_admin_about_path, class: "col-sm-1 header" %>
-          <%= form_tag("/admin/posts", method: :'get') do %>
+        <div class="row underbar header header-button">
+          <%= link_to 'ログアウト', destroy_admin_session_path,method: :delete, class:"col-sm-1 btn btn-warning" %>
+          <%= link_to 'ユーザ一覧', admin_users_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to '投稿一覧', admin_posts_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to '概要', admin_abouts_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to '概要追加', new_admin_about_path, class:"col-sm-1 btn btn-default" %>
+        </div>
+        <div class="col-sm-4 search">
+          <span class="top-search">
+          <%= form_tag("/admin/posts/search", method: :'get') do %>
+            <label>投稿検索  : </label>
             <%= text_field_tag :search %>
-              <span class="form-group-btn col-sm-3">
-                <%= submit_tag '検索', :name => nil, class: "btn btn-default search-btn header" %>
-              </span>
+            <%= submit_tag '検索', :name => nil, class: "btn btn-default" %>
           <% end %>
-          <%= form_tag("/admin/users", method: :'get') do %>
+          </span>
+          <span>
+          <%= form_tag("/admin/user/search", method: :'get') do %>
+            <label>ユーザ検索 : </label>
             <%= text_field_tag :search %>
-              <span class="form-group-btn col-sm-3 header">
-                <%= submit_tag '検索', :name => nil, class: "btn btn-default search-btn" %>
-              </span>
+            <%= submit_tag '検索', :name => nil, class: "btn btn-default " %>
           <% end %>
+          </span>
         </div>
       </div>
     <% elsif user_signed_in? %>
     <div class="container">
       <h1>MakeMemories</h1>
-      <div class="row underbar">
-        <%= link_to 'ログアウト', destroy_user_session_path, metod: :delete, class:"col-sm-1 btn btn-warning header" %>
-        <%= link_to '新規投稿', new_end_user_post_path, class:"col-sm-1 btn btn-default header" %>
+      <div class="row underbar header header-button">
+        <%= link_to 'ログアウト', destroy_user_session_path, metod: :delete, class:"col-sm-1 btn btn-warning" %>
+        <%= link_to '新規投稿', new_end_user_post_path, class:"col-sm-1 btn btn-default" %>
         <%= link_to '投稿一覧', end_user_posts_path, class:"col-sm-1 btn btn-default" %>
-        <%= link_to 'ユーザ詳細', end_user_user_path(current_user), class:"col-sm-1 btn btn-default header" %>
-        <%= link_to '概要', end_user_about_path, class:"col-sm-1 btn btn-default  header" %>
+        <%= link_to 'ユーザ詳細', end_user_user_path(current_user), class:"col-sm-1 btn btn-default" %>
+        <%= link_to '概要', end_user_about_path, class:"col-sm-1 btn btn-default" %>
+      </div>
+      <div class="col-sm-4 search user-search">
+        <span class="top-search">
+        <%= form_tag("/end_user/post/search", method: :'get') do %>
+          <label>投稿検索  : </label>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :name => nil, class: "btn btn-default" %>
+        <% end %>
+        </span>
+        <%= form_tag("/end_user/user/search", method: :'get') do %>
+          <label>ユーザ検索 : </label>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :name => nil, class: "btn btn-default " %>
+        <% end %>
       </div>
     </div>
     <% else %>

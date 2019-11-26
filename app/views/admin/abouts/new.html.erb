@@ -1,11 +1,18 @@
 <h1>概要追加</h1>
-  <%= form_for @about, url: admin_abouts_path do |f| %>
-     <% if @about.errors.any? %>
-        <%= @about.errors.conut %>件のエラーが発生しました。
-        <% @about.errors.full_message.each do |message| %>
-          <%= message %>
-        <% end %>
+  <div class="container">
+    <div class="row">
+    <div class="form col-sm-6 col-sm-offset-3">
+      <%= form_for @about, url: admin_abouts_path do |f| %>
+           <% if @about.errors.any? %>
+              <%= @about.errors.conut %>件のエラーが発生しました。
+              <% @about.errors.full_message.each do |message| %>
+                <%= message %>
+              <% end %>
+            <% end %>
+          <div class="col-sm-8 col-sm-offset-2"><label class="form-label">内容  :</label><%= f.text_area :content %></div>
+          <div><%= f.submit '追加' %></div>
+
       <% end %>
-    <%= f.text_area :content %>
-    <%= f.submit '追加' %>
-  <% end %>
+    </div>
+    </div>
+  </div>
