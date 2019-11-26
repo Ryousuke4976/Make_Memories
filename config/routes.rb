@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :post, :destroy]
     resources :posts, only: [:index, :destroy]
-    resources :abouts, only: [:index, :edit, :update]
+    resources :abouts, only: [:index, :new, :create]
+    get 'user/search', to: 'users#search', as: 'user_search'
+    get 'posts/search', to: 'posts#search', as: 'post_search'
   end
 
   namespace :end_user do
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :new, :create] do
       resource :nices, only: [:create, :destroy]
     end
+    get 'user/search', to: 'users#search', as: 'user_search'
+    get 'post/search', to: 'posts#search', as: 'post_search'
     resource :relation, only: [:create, :destroy]
     resources :comments, only: [:create]
     get 'about' => 'abouts#index'

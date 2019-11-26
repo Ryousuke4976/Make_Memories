@@ -1,15 +1,32 @@
-<h1>投稿</h1>
-  <div>
-    <%= form_for @post, url: end_user_posts_path do |f| %>
-      <% if @post.errors.any? %>
-        <%= @post.errors.conut %>件のエラーが発生しました。
-        <% @post.errors.full_message.each do |message| %>
-          <%= message %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 form">
+      <%= form_for @post, url: end_user_posts_path do |f| %>
+        <% if @post.errors.any? %>
+          <%= @post.errors.conut %>件のエラーが発生しました。
+          <% @post.errors.full_message.each do |message| %>
+            <%= message %>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <%= f.attachment_field :image, class: "post" %>
-      <%= f.text_area :content, size: "40x10", maxlength: 400, class: "post" %>
-      <%= f.submit "投稿" %>
-    <% end %>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <%= f.attachment_field :image %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <%= f.text_area :content, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <%= f.submit "投稿", class:"btn btn-primary btn-block" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>

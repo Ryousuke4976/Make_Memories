@@ -1,10 +1,25 @@
-<h1>投稿一覧</h1>
 <div class="container">
+  <div class="row col-sm-8 col-sm-offset-2">
+    <div class="profile">
+      <%= attachment_image_tag @user, :profile_image, size: "80x80", format: 'jpeg', fallback: "no_image.jpg" %>
+      <div class="text">
+        <label class="text-label">name : </label>
+        <span><%= @user.name %></span>
+        <br>
+        <label class="text-label">introduction : </label>
+        <span><%= @user.introduction %></span>
+        <div class="deleted_at">
+          <% if @user.deleted_at == nil %>
+            <%= link_to "ユーザ削除", admin_user_path(@user), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-danger btn-lg" %>
+          <% else %>
+            <p>削除済み</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <% if flash[:success] %>
-        <%= flash[:success] %>
-      <% end %>
       <% unless @posts.any? %>
         <div class="nothing">
           <p>投稿がありませんでした。</p>
@@ -48,5 +63,4 @@
         <%= paginate @posts, class: "paginate" %>
       <% end %>
     </div>
-  </div>
 </div>

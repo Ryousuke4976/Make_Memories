@@ -11,24 +11,69 @@
 
   <body>
     <% if admin_signed_in? %>
-      <h1>MakeMemories</h1>
-      <%= link_to 'ログアウト', destroy_admin_session_path,method: :delete %>
-      <%= link_to 'ユーザ一覧', admin_users_path %>
-      <%= link_to '投稿一覧', admin_posts_path %>
-      <%= link_to '概要', admin_abouts_path %>
+      <div class="container">
+        <h1>MakeMemories</h1>
+        <div class="row underbar header header-button">
+          <%= link_to 'ログアウト', destroy_admin_session_path,method: :delete, class:"col-sm-1 btn btn-warning" %>
+          <%= link_to 'ユーザ一覧', admin_users_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to '投稿一覧', admin_posts_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to '概要', admin_abouts_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to '概要追加', new_admin_about_path, class:"col-sm-1 btn btn-default" %>
+        </div>
+        <div class="col-sm-4 search">
+          <span class="top-search">
+          <%= form_tag("/admin/posts/search", method: :'get') do %>
+            <label>投稿検索  : </label>
+            <%= text_field_tag :search %>
+            <%= submit_tag '検索', :name => nil, class: "btn btn-default" %>
+          <% end %>
+          </span>
+          <span>
+          <%= form_tag("/admin/user/search", method: :'get') do %>
+            <label>ユーザ検索 : </label>
+            <%= text_field_tag :search %>
+            <%= submit_tag '検索', :name => nil, class: "btn btn-default " %>
+          <% end %>
+          </span>
+        </div>
+      </div>
     <% elsif user_signed_in? %>
+    <div class="container">
       <h1>MakeMemories</h1>
-      <%= link_to 'ログアウト', destroy_user_session_path, metod: :delete %>
-      <%= link_to '新規投稿', new_end_user_post_path %>
-      <%= link_to '投稿一覧', end_user_posts_path %>
-      <%= link_to 'ユーザ詳細', end_user_user_path(current_user) %>
-      <%= link_to '概要', end_user_about_path %>
+      <div class="row underbar header header-button">
+        <%= link_to 'ログアウト', destroy_user_session_path, metod: :delete, class:"col-sm-1 btn btn-warning" %>
+        <%= link_to '新規投稿', new_end_user_post_path, class:"col-sm-1 btn btn-default" %>
+        <%= link_to '投稿一覧', end_user_posts_path, class:"col-sm-1 btn btn-default" %>
+        <%= link_to 'ユーザ詳細', end_user_user_path(current_user), class:"col-sm-1 btn btn-default" %>
+        <%= link_to '概要', end_user_about_path, class:"col-sm-1 btn btn-default" %>
+      </div>
+      <div class="col-sm-4 search user-search">
+        <span class="top-search">
+        <%= form_tag("/end_user/post/search", method: :'get') do %>
+          <label>投稿検索  : </label>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :name => nil, class: "btn btn-default" %>
+        <% end %>
+        </span>
+        <%= form_tag("/end_user/user/search", method: :'get') do %>
+          <label>ユーザ検索 : </label>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :name => nil, class: "btn btn-default " %>
+        <% end %>
+      </div>
+    </div>
     <% else %>
       <h1>ようこそ</h1>
+      <div class="container">
+        <%= link_to 'ユーザログイン', new_user_session_path, class:"col-sm-2 btn btn-default session header" %>
+        <%= link_to '登録', new_user_registration_path, class:"col-sm-2 btn btn-default header" %>
+      </div>
     <% end %>
-    <%= yield %>
-    <div>
-      <p>© 2018 nagano music Inc</p>
+    <div class="main">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      <p>© 2019 Chiba Inc</p>
     </div>
   </body>
 </html>

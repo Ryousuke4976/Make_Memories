@@ -17,6 +17,12 @@ class EndUser::PostsController < ApplicationController
     redirect_to end_user_posts_path
   end
 
+  def search
+    @user = current_user
+    @posts = Post.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    @comment = Comment.new
+  end
+
   private
     def post_params
       params.require(:post).permit(:content, :image)

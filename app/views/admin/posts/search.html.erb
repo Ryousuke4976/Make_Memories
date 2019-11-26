@@ -1,13 +1,14 @@
-<h1>投稿一覧</h1>
+<h1>検索結果</h1>
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
       <% if flash[:success] %>
-        <%= flash[:success] %>
+        <%faf= flash[:success] %>
       <% end %>
       <% unless @posts.any? %>
         <div class="nothing">
-          <p>投稿がありませんでした。</p>
+          <p>該当する投稿がありませんでした。</p>
+          <%= link_to "投稿一覧へ", admin_posts_path, class:"btn btn-default" %>
         </div>
       <% else %>
         <% @posts.each do |post| %>
