@@ -3,9 +3,13 @@
     <div class="col-sm-8 col-sm-offset-2 form">
       <%= form_for @user, url: end_user_user_path do |f| %>
         <% if @user.errors.any? %>
-          <h2><%= @user.errors.count %> 件の error がありました。</h2>
-          <% @user.erros.full_messages.each do |error| %>
-            <%= error %>
+          <h2>
+            <%= @user.errors.count %> 件の error がありました。
+          </h2>
+          <% @user.errors.full_messages.each do |error| %>
+          <ul>
+            <li><%= error %></li>
+          </ul>
           <% end %>
         <% end %>
         <div class="a-form">

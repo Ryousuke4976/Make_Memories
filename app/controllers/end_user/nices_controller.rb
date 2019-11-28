@@ -3,14 +3,22 @@ class EndUser::NicesController < ApplicationController
   def create
     post = Post.find(params[:post_id])
     nice = current_user.nices.new(post_id: post.id)
-    nice.save
+    if nice.save
+      flash[:success] = 'いいねしました!'
+    else
+      flash[:alert] = 'いいねできませんでした'
+    end
     redirect_to end_user_posts_path
   end
 
   def destroy
     post = Post.find(params[:post_id])
     nice = current_user.nices.find_by(post_id: post.id)
-    nice.destroy
+    if nice.destroy
+      flash[:success] = 'いいねを解除しました!'
+    else
+      flash[:alert] = 'いいねを解除できませんでした'
+    end
     redirect_to end_user_posts_path
   end
 end

@@ -5,7 +5,11 @@ class Admin::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    if params[:search] == ""
+      @posts = []
+    else
+      @posts = Post.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    end
   end
 
   def destroy

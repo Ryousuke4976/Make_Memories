@@ -1,6 +1,9 @@
 <h2 style="text-align:center">ログイン</h2>
 <% if flash[:notice] %>
-  <%= flash[:notice] %>
+  <div class="container">
+    <p class="col-sm-4 col-sm-offset-5" style="width:200px;"><%= flash[:notice] %>
+    </p>
+  </div>
 <% end %>
 <div style="width:100%;">
   <div style="width:600px;margin:0 auto;text-align:center;">

@@ -1,6 +1,6 @@
 <div class="container">
   <h1>概要</h1>
-    <% unless @abouts.blank? %>
+    <% if @abouts.any? %>
       <% @abouts.each do |about| %>
         <div class="row col-sm-8 col-sm-offset-2 content">
           <p>
