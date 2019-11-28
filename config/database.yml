@@ -28,5 +28,5 @@ production:
   charset: utf8mb4
   collation: utf8mb4_general_ci
   host: rds-mysql-server.cbse7vkixmqx.ap-southeast-1.rds.amazonaws.com
-  username: ryousuke
+  username: root
   password: ryousuke0503
