@@ -9,10 +9,13 @@ class Admin::AboutsController < ApplicationController
   end
 
   def create
-    about = About.new(about_params)
-    about.save
-    flash[:success] = '概要を追加しました。'
-    redirect_to admin_abouts_path
+    @about = About.new(about_params)
+    if @about.save
+      flash[:success] = '概要を追加しました。'
+      redirect_to admin_abouts_path
+    else
+      render 'new'
+    end
   end
 
   private

@@ -12,18 +12,25 @@ class EndUser::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    flash[:notice] = "Update successfully"
-    @posts = Post.where(user_id: params[:id]).page(params[:page]).per(15).reverse_order
-    @comment = Comment.new
-    redirect_to end_user_user_path(current_user)
+    if @user.update(user_params)
+      flash[:success] = "ユーザ情報を変更しました!"
+      @posts = Post.where(user_id: params[:id]).page(params[:page]).per(15).reverse_order
+      @comment = Comment.new
+      redirect_to end_user_user_path(current_user)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:notice] = "アカウントを削除しました。"
-    redirect_to new_user_registration_path
+    if @user.destroy
+      flash[:success] = "アカウントを削除しました。"
+      redirect_to new_user_registration_path
+    else
+      flash[:alert] = "アカウントを削除できませんでした"
+      redirect_to end_user_user_path(current_user)
+    end
   end
 
   def following
@@ -47,7 +54,11 @@ class EndUser::UsersController < ApplicationController
 
   def search
     @user = current_user
-    @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    if params[:search] == ""
+      @users = []
+    else
+      @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    end
   end
 
   private

@@ -13,13 +13,21 @@ class EndUser::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to end_user_posts_path
+    if @post.save
+      flash[:success] = '投稿しました!'
+      redirect_to end_user_posts_path
+    else
+      render action: :new
+    end
   end
 
   def search
     @user = current_user
-    @posts = Post.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    if params[:search] == ""
+      @posts = []
+    else
+      @posts = Post.search(params[:search]).page(params[:page]).reverse_order
+    end
     @comment = Comment.new
   end
 

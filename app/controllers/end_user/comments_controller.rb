@@ -3,8 +3,11 @@ class EndUser::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
-
+    if @comment.save
+      flash[:success] = 'コメントしました!'
+    else
+      flash[:alert] = 'コメントを失敗しました'
+    end
     redirect_to end_user_posts_path
   end
 

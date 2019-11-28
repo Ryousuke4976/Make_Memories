@@ -36,6 +36,16 @@
           <% end %>
           </span>
         </div>
+        <% if flash[:success] %>
+          <span class="success col-sm-4 col-sm-offset-3">
+            <%= flash[:success] %>
+          </span>
+        <% end %>
+        <% if flash[:alert] %>
+          <span class="alert col-sm-4 col-sm-offset-3">
+            <%= flash[:alert] %>
+          </span>
+        <% end %>
       </div>
     <% elsif user_signed_in? %>
     <div class="container">
@@ -61,6 +71,12 @@
           <%= submit_tag '検索', :name => nil, class: "btn btn-default " %>
         <% end %>
       </div>
+      <% if flash[:success] %>
+        <span class="success col-sm-4 col-sm-offset-3"><%= flash[:success] %></span>
+      <% end %>
+      <% if flash[:alert] %>
+        <span class="alert col-sm-4 col-sm-offset-3"><%= flash[:alert] %></span>
+      <% end %>
     </div>
     <% else %>
       <h1>ようこそ</h1>

@@ -3,9 +3,11 @@
     <div class="col-sm-8 col-sm-offset-2 form">
       <%= form_for @post, url: end_user_posts_path do |f| %>
         <% if @post.errors.any? %>
-          <%= @post.errors.conut %>件のエラーが発生しました。
-          <% @post.errors.full_message.each do |message| %>
-            <%= message %>
+          <%= @post.errors.count %>件のエラーが発生しました。
+          <% @post.errors.full_messages.each do |message| %>
+            <ul>
+              <li><%= message %></li>
+            </ul>
           <% end %>
         <% end %>
 

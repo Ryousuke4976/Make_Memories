@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :niced_posts, through: :nices, source: :post, foreign_key: 'post_id'
   acts_as_paranoid
   attachment :profile_image
+  validates :name, presence: true
+  validates :name, length: {minimum: 4, maximum: 25}
+
 
   def follow(other_user)
     unless self == other_user

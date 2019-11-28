@@ -5,7 +5,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def search
-    @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    if params[:search] == ""
+      @users = []
+    else
+      @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+    end
   end
 
   def show

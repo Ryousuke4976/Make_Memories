@@ -7,8 +7,8 @@ class EndUser::RelationsController < ApplicationController
       flash[:success] = 'ユーザをフォローしました'
       redirect_to end_user_following_path(current_user)
     else
-      flash.now[:alert] = 'ユーザのフォローに失敗しました。'
-      redirect_to end_user_following_path(current_user)
+      flash[:alert] = 'ユーザのフォローに失敗しました。'
+      redirect_to end_user_user_path(@user)
     end
   end
 
@@ -16,11 +16,10 @@ class EndUser::RelationsController < ApplicationController
     following = current_user.unfollow(@user)
     if following.destroy
       flash[:success] = 'ユーザのフォローを解除しました。'
-      redirect_to end_user_following_path(current_user)
     else
-      flash.now[:alert] = 'ユーザのフォロー解除に失敗しました。'
-      redirect_to end_user_following_path(current_user)
+      flash[:alert] = 'ユーザのフォロー解除に失敗しました。'
     end
+    redirect_to end_user_following_path(current_user)
   end
 
   private

@@ -1,12 +1,9 @@
 <h1>検索結果</h1>
 <div class="container">
-  <% if flash[:success] %>
-    <%= flash[:success] %>
-  <% end %>
   <% unless @users.any? %>
     <div class="nothing">
       <p>ユーザはいませんでした。</p>
-      <%= link_to 'ユーザ一覧へ', admin_users_path %>
+      <%= link_to 'ユーザ一覧へ', admin_users_path, class:"btn btn-default" %>
     </div>
   <% else %>
     <% @users.each do |user| %>
