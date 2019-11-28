@@ -33,4 +33,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     get 'about' => 'abouts#index'
   end
+  root to: 'users/sessions#new'
 end
