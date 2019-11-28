@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    root :to => "devise/sessions#new"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :admin do
@@ -33,5 +34,4 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     get 'about' => 'abouts#index'
   end
-  root to: 'users/sessions#new'
 end
