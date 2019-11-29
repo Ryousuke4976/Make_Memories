@@ -57,7 +57,7 @@ class EndUser::UsersController < ApplicationController
     if params[:search] == ""
       @users = []
     else
-      @users = User.with_deleted.search(params[:search]).page(params[:page]).reverse_order
+      @users = User.search(params[:search]).page(params[:page]).reverse_order
     end
   end
 

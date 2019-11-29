@@ -14,7 +14,7 @@ class Post < ApplicationRecord
 
   def self.search(search)
     if search
-      post = Post.joins(:comments).where("(posts.content like ?) or (comments.comment like ?)", "%#{search}%","%#{search}%")
+      post = Post.where("(posts.content like ?)", "%#{search}%")
     end
   end
 end

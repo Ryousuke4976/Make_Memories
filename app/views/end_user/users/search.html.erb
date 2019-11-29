@@ -7,7 +7,7 @@
       <% unless @users.any? %>
         <div class="nothing">
           <p>ユーザはいませんでした。</p>
-          <%= link_to 'ユーザ一覧へ', admin_users_path, class:"btn btn-default" %>
+          <%= link_to '投稿一覧へ', end_user_posts_path, class:"btn btn-default" %>
         </div>
       <% else %>
         <% @users.each do |user| %>
