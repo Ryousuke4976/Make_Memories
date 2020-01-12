@@ -11,8 +11,8 @@
               <%= attachment_image_tag follower, :profile_image, size: "70x70", format: 'jpeg', fallback: "no_image.jpg" %>
               <span class="follow-user"><%= follower.name %></span>
             <% end %>
-            <span class="follow-button">
-              <%= render 'end_user/relations/follow_button', user: follower %>
+            <span class="follow_button">
+              <%= render 'follow_button' %>
             </span>
             <p><span class="follow-user">introduction  </span><%= follower.introduction %></p>
           </div>

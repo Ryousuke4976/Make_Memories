@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   validates :content, length: {minimum: 1, maximum: 500}
 
   def niced_by?(user)
-    nices.where(user_id: user.id).exists?
+    nices.where("user_id = ? ", "#{user_id}").exists?
   end
 
   def self.search(search)

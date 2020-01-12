@@ -1,0 +1,15 @@
+<% unless current_user == @user %>
+  <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= form_with url: end_user_relation_path, method: :delete, remote: true do |f| %>
+        <%= f.hidden_field :user_id, value: @user.id %>
+        <%= f.submit 'Unfollow', class: 'btn btn-danger' %>
+      <% end %>
+    <% else %>
+      <%= form_with url: end_user_relation_path, remote: true do |f| %>
+        <%= f.hidden_field :user_id, value: @user.id %>
+        <%= f.submit 'Follow', class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
