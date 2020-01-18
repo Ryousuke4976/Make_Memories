@@ -44,6 +44,11 @@
               <% else %>
                 <span class="delete">削除済み</span>
               <% end %>
+            <div class="admin_genre_tag">
+              <% post.genres.each do |g| %>
+                <span> <%= link_to g.name, admin_genre_path(g) %> </span>
+              <% end %>
+            </div>
             <div>
               <%= post.comments.with_deleted.count %>
               <%= post.nices.with_deleted.count %>

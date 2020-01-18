@@ -1,0 +1,29 @@
+// Place all the styles related to the admin/genres controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.li {
+  padding-top: 10px;
+  padding-left: 40px;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.genre-li {
+  margin: 0 auto;
+}
+
+.admin_genre_tag {
+  padding: 20px 10px;
+  margin-bottom: 10px;
+}
+
+.genre-delete {
+  display: inline-block;
+  float: right;
+}
+
+.bold {
+  font-weight: bold;
+  padding-top: 5px;
+}

@@ -1,0 +1,31 @@
+<%= form_for @post, url: end_user_posts_path, remote: true do |f| %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 form-group" >
+      <p id="genre-affection">⬇️　つけたいジャンルがあれば選んでください。</p>
+      <div class="checkbox">
+        <%= f.collection_check_boxes(:genre_ids, @genres, :id, :name) do |g| %>
+          <div><%= g.check_box + g.text %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <label>Photo : </label>
+      <div class="image_field"><%= f.attachment_field :image %></div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <label>Content : </label>
+      <%= f.text_area :content, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= f.submit "投稿", class:"btn btn-primary btn-block" %>
+    </div>
+  </div>
+<% end %>

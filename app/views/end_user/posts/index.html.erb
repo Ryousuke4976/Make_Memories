@@ -24,6 +24,11 @@
                 <%= attachment_image_tag post, :image, :fill, 300, 300 %>
               <% end %>
             </div>
+            <div class="genre_tag">
+              <% post.genres.each do |g| %>
+                <span> <%= link_to g.name, end_user_genre_path(g) %> </span>
+              <% end %>
+            </div>
             <div>
               <%= post.comments.count %>
               <%= post.nices.count %>

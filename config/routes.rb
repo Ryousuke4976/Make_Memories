@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :post, :destroy]
     resources :posts, only: [:index, :destroy]
+    resources :genres, only: [:index, :show, :destroy]
     resources :abouts, only: [:index, :new, :create]
     get 'user/search', to: 'users#search', as: 'user_search'
     get 'posts/search', to: 'posts#search', as: 'post_search'
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
     end
     get 'user/search', to: 'users#search', as: 'user_search'
     get 'post/search', to: 'posts#search', as: 'post_search'
+    resources :genres, except: [:destroy,:edit,:update,:new]
     resource :relation, only: [:create, :destroy]
     resources :comments, only: [:create]
     get 'about' => 'abouts#index'

@@ -17,6 +17,7 @@
           <%= link_to 'ログアウト', destroy_admin_session_path,method: :delete, class:"col-sm-1 btn btn-warning" %>
           <%= link_to 'ユーザ一覧', admin_users_path, class:"col-sm-1 btn btn-default" %>
           <%= link_to '投稿一覧', admin_posts_path, class:"col-sm-1 btn btn-default" %>
+          <%= link_to 'ジャンル一覧', admin_genres_path, class:"col-sm-1 btn btn-default genre_list" %>
           <%= link_to '概要', admin_abouts_path, class:"col-sm-1 btn btn-default" %>
           <%= link_to '概要追加', new_admin_about_path, class:"col-sm-1 btn btn-default" %>
         </div>
@@ -55,6 +56,7 @@
         <%= link_to '新規投稿', new_end_user_post_path, class:"col-sm-1 btn btn-default" %>
         <%= link_to '投稿一覧', end_user_posts_path, class:"col-sm-1 btn btn-default" %>
         <%= link_to 'ユーザ詳細', end_user_user_path(current_user), class:"col-sm-1 btn btn-default" %>
+        <%= link_to 'ジャンル一覧', end_user_genres_path, class:"col-sm-1 btn btn-default genre_list" %>
         <%= link_to '概要', end_user_about_path, class:"col-sm-1 btn btn-default" %>
       </div>
       <div class="col-sm-4 search user-search">

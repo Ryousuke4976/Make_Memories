@@ -1,0 +1,7 @@
+<%= form_with url: end_user_genres_path, model: @genre, method: :post, remote: true do |f| %>
+  <div class="col-sm-6 col-sm-offset-3 form-group" >
+    <label>Genre : </label>
+    <%= f.text_field :name %>
+    <%= f.submit 'ジャンルを追加' %>
+  </div>
+<% end %>

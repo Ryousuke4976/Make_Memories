@@ -1,0 +1,19 @@
+<h1>ジャンル一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <% @genres.each do |genre| %>
+        <div class="genre-li">
+          <%= link_to admin_genre_path(genre), class: "li" do %>
+            <%= genre.name %><span>　<%= genre.posts.with_deleted.count %>件　(<%= genre.posts.count %> 、 <%= genre.posts.only_deleted.count %>)</span>
+          <% end %>
+          <% if genre.deleted_at.nil? %>
+            <%= link_to '削除', admin_genre_path(genre), method: :delete, class: 'btn btn-danger genre-delete' %>
+          <% else %>
+            <span class="genre-delete bold">削除済み</span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,16 +8,22 @@ class EndUser::PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @genres = Genre.all
+    @genre = Genre.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
-      flash[:success] = '投稿しました!'
-      redirect_to end_user_posts_path
-    else
-      render action: :new
+    @genre = Genre.new
+    @genres = Genre.all
+    respond_to do |format|
+      if @post.save
+        flash[:success] = '投稿しました!'
+        format.html {redirect_to end_user_posts_path}
+      else
+        format.js {render 'fail'}
+      end
     end
   end
 
@@ -33,6 +39,6 @@ class EndUser::PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:content, :image)
+      params.require(:post).permit(:content, :image,{genre_ids: []})
     end
 end

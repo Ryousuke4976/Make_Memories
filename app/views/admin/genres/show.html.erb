@@ -1,15 +1,16 @@
-<h1>投稿一覧</h1>
+<h1><%= @post_genres.count %>件ありました。</h1>
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
-      <% unless @posts.any? %>
+      <% unless @post_genres.any? %>
         <div class="nothing">
           <p>投稿がありませんでした。</p>
         </div>
       <% else %>
-        <% @posts.each do |post| %>
+        <% @post_genres.each do |pg| %>
           <div class="post">
-            <% user = User.with_deleted.find_by(id: post.user_id) %>
+            <% post = Post.with_deleted.find(pg.post_id) %>
+            <% user = User.with_deleted.find(post.user_id) %>
             <%= link_to admin_user_path(user) do %>
               <%= attachment_image_tag user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
               <span class="profile-label"><%= user.name %></span>
@@ -48,8 +49,7 @@
             <% end %>
           </div>
         <% end %>
-        <%= paginate @posts, class: "paginate" %>
-      <% end %>
-    </div>
+      <%= paginate @post_genres, class: "paginate" %>
+    <% end %>
   </div>
 </div>

@@ -4,8 +4,14 @@
       <%= render 'end_user/users/showtemplate', user: @user %>
     </div>
     <div class="col-sm-8">
-      <% if @niced_posts.any? %>
-        <% @niced_posts.each do |post| %>
+      <% unless @post_genres.any? %>
+        <div class="nothing">
+          <p>投稿がありませんでした。</p>
+        </div>
+      <% else %>
+        <h2 class="genre-head"><%= @post_genres.count %>件の投稿がありました。</h2>
+        <% @post_genres.each do |pg| %>
+          <% post = pg.post %>
           <div class="post">
             <%= link_to end_user_user_path(post.user) do %>
               <%= attachment_image_tag post.user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
@@ -40,12 +46,12 @@
                 <% end %>
               <% end %>
             </div>
-            <%= form_for @comment, url: end_user_comments_path do |f| %>
-              <%= f.hidden_field :post_id, value: post.id %>
-              <%= f.text_field :comment %>
-              <%= f.submit "コメント" %>
-            <% end %>
-            <% Comment.where(post_id: post).each do |comment| %>
+              <%= form_for @comment, url: end_user_comments_path do |f| %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                <%= f.text_field :comment %>
+                <%= f.submit "コメント" %>
+              <% end %>
+              <% Comment.where(post_id: post).each do |comment| %>
               <div class="comment">
                 <%= link_to end_user_user_path(comment.user) do%>
                   <%= attachment_image_tag comment.user, :profile_image, size: "47x47", format: 'jpeg', fallback: "no_image.jpg" %>
@@ -54,12 +60,10 @@
                 <span class="time"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></span>
                 <p><%= comment.comment %></p>
               </div>
-            <% end %>
+              <% end %>
           </div>
         <% end %>
-        <%= paginate @niced_posts, class: "paginate" %>
-      <% else %>
-        <p class="nothing">該当する投稿がありませんでした。</p>
+        <%= paginate @post_genres, class: "paginate" %>
       <% end %>
     </div>
   </div>

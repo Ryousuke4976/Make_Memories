@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_045841) do
+ActiveRecord::Schema.define(version: 2020_01_12_101444) do
 
   create_table "abouts", force: :cascade do |t|
     t.text "content"
@@ -40,9 +40,25 @@ ActiveRecord::Schema.define(version: 2019_11_14_045841) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_genres_on_name", unique: true
+  end
+
   create_table "nices", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_genres", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "genre_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
