@@ -1,24 +1,84 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Name
 
-Things you may want to cover:
+Make_Memories
 
-* Ruby version
+このアプリはジャンル別に投稿できるSNSです。
 
-* System dependencies
+# Features
 
-* Configuration
+このアプリの他にない機能は投稿機能があるのですが、その際まだ追加していないジャンルを自由に何回でも追加できます。他の人が追加していないような面白いジャンルを追加してあなたから新しいものを発信していきましょう。人気のあるジャンルも見ることができます。
 
-* Database creation
+# Functions
 
-* Database initialization
+管理者側
+・ログイン機能
+・投稿一覧
+・投稿削除機能
+・ユーザ一覧
+・ユーザ削除機能
+・ジャンル一覧
+・ジャンル削除機能
+・お知らせ機能
+・お知らせ追加機能
+・ユーザ、投稿検索機能
 
-* How to run the test suite
+ユーザ側
+・会員登録機能
+・ログイン機能
+・ユーザ編集機能
+・投稿機能
+・投稿一覧
+・フォロー機能
+・いいね機能
+・お知らせ一覧
+・ジャンル一覧
+・ユーザ、投稿検索機能
 
-* Services (job queues, cache servers, search engines, etc.)
+# Requirement
 
-* Deployment instructions
+ruby (2.5.5)
+rails (5.2.3)
+bootstrap-sass (3.4.1, 3.3.7)
+devise (4.7.1)
+jquery-rails (4.3.5)
+kaminari (1.1.1)
+pry-rails (0.3.9)
+paranoia (2.4.2)
+refile-mini_magick (0.2.0)
 
-* ...
+# Installation
+ローカルでこのアプリを使って機能を足したりできるようにする方法を記載します。
+
+まず、ディレクトリをローカル環境にコピーします。
+```
+git clone <リモートリポジトリ名>
+```
+
+次にgemをインストールします。
+```
+bundle install
+```
+次にマイグレーションを実行します。
+```
+rails db:migrate
+```
+最後に管理者については初期データが必要ですのでシードファイルを実行します。
+```
+rails db:seed
+```
+
+# Usage
+「Make_Memories」はSNSアプリです。
+
+# Note
+ 管理者ログインページにアクセスするには「admins/sign_in」でアクセスしてください。
+ また、メールアドレスは「admin@gmail.com」、パスワードは「aaaaaa」です。
+
+# Author
+
+* 佐藤凌介
+* 所属
+* E-mail
+
